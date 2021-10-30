@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import Item from './Item';
 import { db, storage } from '../firebase';
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 export default function Home() {
-    var categories = ["bag", "idCard", 'LunchBox', 'MobilePhone'];
+    var categories = ["phone", "Id Card", 'Bag', 'Notebook'];
     var selectionCat = [true, false, true, true];
     const history = useHistory();
     var user ='';
     var [Items, setItems] = useState([]);
     const storage = getStorage();
-    useEffect(() => {
+    useEffect(async () => {
         user=localStorage.getItem('user');
         db.collection("Items").onSnapshot((snapshot) => {
             setItems(snapshot.docs.map((doc) => ({
@@ -19,7 +20,7 @@ export default function Home() {
                 photo: doc.data().photo,
                 description: doc.data().description,
                 phone: doc.data().phone,
-                // user:doc.data().postBy,
+                user:doc.data().postBy,
             })
             ))
         })
@@ -41,8 +42,9 @@ export default function Home() {
             const uploadTask = uploadBytes(storageRef, image).then((snapshot) => {
                 console.log(snapshot);
                 getDownloadURL(snapshot.ref).then((downloadURL) => {
+                    document.getElementsByClassName("PostItem")[0].style.display = 'none' ;
                     db.collection("Items").add({
-                        postBy: user,
+                        postBy: localStorage.getItem('user'),
                         itemName: name,
                         description: desc,
                         photo: downloadURL,
@@ -57,11 +59,56 @@ export default function Home() {
             setInterval(function () { document.getElementsByClassName('warning')[0].innerHTML = '' }, 3000);
         }
     }
+    var [loading,setload]=useState(true);
+   async function fun(en){
+        const citiesRef = db.collection('Items');
+        const snapshot = await citiesRef.where('itemName', '==', en).get();
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }  
+        snapshot.docs.length>1?
+        setItems(snapshot.docs.map((doc) => ({
+            itemName: doc.data().itemName,
+            //    date:doc.data().Date,
+            photo: doc.data().photo,
+            description: doc.data().description,
+            phone: doc.data().phone,
+            user:doc.data().postBy,
+        })
+        )):alert("No Products Found")
+    }
+   async function fune(){
+        let str=document.getElementById("Search").value;
+        const citiesRef = db.collection('Items');
+        const snapshot = await citiesRef.where('itemName', '==', str).get();
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }  
+        snapshot.docs.length>1?
+        setItems(snapshot.docs.map((doc) => ({
+            itemName: doc.data().itemName,
+            //    date:doc.data().Date,
+            photo: doc.data().photo,
+            description: doc.data().description,
+            phone: doc.data().phone,
+            user:doc.data().postBy,
+        })
+        )):alert("No Products Found")
+    }
     return (
         <div className='Home' >
+            <div className='NavThop'>
+                <div className='nav'>
+                    <div><input id='Search' placeholder='Search Your Item'></input><i onClick={()=>{fune()}} class="fas fa-search"></i></div>
+                    <div onClick={()=>{document.getElementsByClassName("PostItem")[0].style.display='block'}}  className='Post'>Post</div>
+                </div>
+            </div>
+            {/* {loading?<div className='load'> <div class="lds-hourglass"></div></div>:<></>} */}
             <div className='categories'>
                 {categories.map((cat, ind) => {
-                    return <div style={{ backgroundColor: selectionCat[ind] ? 'white' : 'rgba(0, 0, 0, 0.056)' }}>{cat}{selectionCat[ind] ? <i class="fas fa-times"></i> : <></>}</div>
+                    return <div onClick={()=>fun(cat)} style={{ backgroundColor: selectionCat[ind] ? 'white' : 'rgba(0, 0, 0, 0.056)' }}><i class="fas fa-hashtag"></i> &emsp;{cat}</div>
                 })}
             </div>
             <div className='PostItem'>
@@ -78,7 +125,7 @@ export default function Home() {
                         <input id='item_name' placeholder="Item name" required />
                         <textarea name='desc' rows='5' cols='25' id='description' placeholder="Description" required></textarea>
                         <input id='phno' type="tel" pattern="[0-9]{10}" placeholder="Founder Contact number" required />
-                        <input type="submit" onClick={sendPost} />
+                        <br/><button type="submit" onClick={sendPost}>Submit</button>
                     </form>
                 </div>
             </div>
