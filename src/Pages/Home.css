@@ -1,0 +1,240 @@
+.nav input,input,textarea{
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 50px;
+    border-radius: 10px;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.27);
+    border: none;
+}
+.nav i{
+margin-left: -30px;
+font-size: 20px;
+margin-right: 30px;
+}
+.nav div{
+    margin-left: auto;
+}
+.nav .Post{
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-top: 4px;
+    border-radius: 7px;
+    background-color: red;
+    color:white;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: auto;
+    cursor: pointer;
+    border:2px solid white;
+}
+.nav .Post:hover{
+    background-color: white;
+    border:2px solid red;
+    color: black;
+}
+.nav{
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-flow: row;
+}
+.categories{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.categories div{
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.17);
+}
+.categories div i{
+    margin-left: 15px;
+}
+.categories div:hover{
+    background-color: white;
+}
+.Home .List img{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.Home .List .box{
+    text-align: center;
+    grid-template-rows: auto auto;
+    display: inline-block;
+    width: 250px;
+    height: 550px;
+    margin-bottom: 30px;
+    padding: 20px;
+    padding-bottom: 0px;
+    transition: all 0.3s,height 0.5s,margin 0.5s;
+}
+.Home .List .box:hover{
+    height: 381px;
+    margin-bottom: 0px;
+}
+.Row{
+    display: grid;
+    grid-template-rows: auto auto;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: initial;
+}
+.Row .date{
+    padding-bottom: 10px;
+    opacity: 0.5;
+    font-size: 13px;
+}
+.Row .desc{
+    font-weight: normal;
+    font-size: 15px;
+    padding-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.Row input{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.17);
+}
+.box:hover{
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.17);
+}
+.NavThop .Menu{
+    text-align: end;
+    margin-right: 50px;
+    margin-top: 20px;
+    font-weight: 700;
+    margin-left: auto;
+}
+.List{
+    text-align: center;
+}
+.NavMenu{
+    position: absolute;
+}
+.NavMenu{
+    height: 70%;
+    color:white;
+    width: 200px;
+    z-index: 999;
+    text-align: center;
+    right: 0;
+    padding: 50px;
+}
+.My_Item{
+    position: absolute;
+    background-color: white;
+    width: 400px;
+    z-index: 999;
+    height: 500px;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.87);
+    padding: 40px;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.NavMenu .navitem{
+    padding: 50px;
+    border-radius: 70%;
+    font-size: 20px;
+    white-space: nowrap;
+    margin-bottom: 30px;
+    cursor: pointer;
+    background-color: red;
+    font-weight:700;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.87);
+}
+.NavMenu .navitem:hover{
+    background-color: white;
+    color:red;
+}
+.itsmine{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: red;
+    font-weight:700;
+    color:white;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    border:2px solid white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+}
+.itsmine:hover{
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    cursor: pointer;
+}
+.PostItem{
+    width: calc(80% - 80px);
+    height: calc(80% - 80px);
+    position: absolute;
+    background-color: white;
+    box-shadow:  0 0 100px rgba(0, 0, 0, 0.87);
+    top:0;
+    padding: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin: auto;
+    display: none;
+    border-radius: 30px;
+}
+.PostItem i{
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.postinput{
+    text-align: center;
+}
+.postinput img{
+    height: 100px;
+    margin-bottom: -125px;
+    margin-left: 50px;
+}
+.postinput input,textarea{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    width: 60%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.uploading{
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.warning{
+    color: red;
+}
